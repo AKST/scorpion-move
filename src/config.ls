@@ -10,7 +10,6 @@ window.Demo.Conf = do ->
   solid-color-factory = (color) ->
     (cxt) !->
       cxt.fillStyle = color
-      cxt.fillRect 0, 0, Conf.width, Conf.height
 
   coolish = gradient-factory( 
     Demo.Math.colorCurve([
@@ -43,9 +42,10 @@ window.Demo.Conf = do ->
   )
 
   return
-    song: './tune/teknian.mp3'
+    song: './tune/zedd.mp3'
     width: window.inner-width 
     height: window.inner-height
+
     colors:
       gradients:
         coolish: coolish
@@ -54,10 +54,15 @@ window.Demo.Conf = do ->
         black: solid-color-factory \#000
         white: solid-color-factory \#fff
     init:
-      grid-size: 3
+      theshold:
+        drop: 190
+        ugh: 250 
+      grid-size: 2
       grid-sink: 0.8
       flux-rate: 0.0025
     live:
+      theshold:
+        drop: 190
       grid-size: 2
       grid-sink: 0.8
       flux-rate: 0.0025

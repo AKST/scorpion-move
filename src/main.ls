@@ -8,6 +8,7 @@ window.preload = ->
 window.setup = ->
   Conf = Demo.Conf
   Demo.tune.play!
+  Demo.Update.initTimed!
   $(\#defaultCanvas).remove!
   Demo.cxt = $(\#target)
     .width Conf.width
@@ -19,7 +20,7 @@ window.setup = ->
 
 
 window.draw = ->
-  Demo.Update!
+  Demo.Update.update!
   Demo.Graphics.background-fill Demo.cxt
   Demo.Graphics.square-grid-fill Demo.cxt
 

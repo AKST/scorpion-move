@@ -26,6 +26,7 @@ var paths = {
         vendorPath('prelude-ls/browser/prelude-browser-min.js'),
         vendorPath('jquery/dist/jquery.min.js'),
         vendorPath('color-js/color.js'),
+        vendorPath('underscore/underscore-min.js'),
         vendorPath('p5js/lib/p5.js'),
         vendorPath('p5js/lib/addons/p5.dom.js'),
         vendorPath('p5js/lib/addons/p5.sound.js'),

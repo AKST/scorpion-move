@@ -31,16 +31,20 @@ Demo.Graphics = do ->
 
       Conf.live.colors.grid cxt, grid-color-state
 
-      box-size = arean-size / Conf.live.grid-size
-      b-offset = box-size * (Conf.live.grid-sink / Conf.live.grid-size) 
+      grid-size = Conf.live.grid-size 
+
+      box-size = arean-size / grid-size
+      b-offset = box-size * (Conf.live.grid-sink / grid-size) 
       draw-size = box-size - b-offset * Conf.live.grid-sink
 
-      for x in [0 til Conf.live.grid-size]
-        for y in [0 til Conf.live.grid-size]
-          _x = (b-offset+v-offset)+(x * box-size) 
-          _y = (b-offset+h-offset)+(y * box-size) 
-          _s = -1 * (draw-size - box-size)
-          cxt.fill-rect _x, _y, _s, _s
+      for x in [0 til grid-size]
+        for y in [0 til grid-size]
+          cxt.fill-rect(
+            (b-offset+v-offset)+(y*box-size),
+            (b-offset+h-offset)+(x*box-size), 
+            draw-size - b-offset,
+            draw-size - b-offset,
+          )
           
 
   return
