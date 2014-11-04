@@ -18,6 +18,15 @@ window.setup = ->
     .get 0
     .get-context '2d'
 
+  $(window).on 'resize', ->
+    Conf.height = window.inner-height
+    Conf.width = window.inner-width
+    $(\#target)
+      .width Conf.width
+      .height Conf.height
+      .attr 'width', Conf.width
+      .attr 'height', Conf.height
+
 
 window.draw = ->
   Demo.Update.update!

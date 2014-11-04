@@ -12,20 +12,21 @@ Demo.Graphics = do ->
       cxt.fillRect 0, 0, Conf.width, Conf.height
 
   square-grid-fill = do
-    {width, height} = Conf
-
-    if height < width
-      v-offset = (width - height)/2 + height/20
-      h-offset = height/20
-      arean-size = height - h-offset*2
-    else
-      v-offset = width/20
-      h-offset = (height - width)/2 + width/20
-      arean-size = width - v-offset*2
-
-    grid-color-state = 0
-
     (cxt) !->
+      {width, height} = Conf
+
+      if height < width
+        v-offset = (width - height)/2 + height/20
+        h-offset = height/20
+        arean-size = height - h-offset*2
+      else
+        v-offset = width/20
+        h-offset = (height - width)/2 + width/20
+        arean-size = width - v-offset*2
+
+      grid-color-state = 0
+
+
       grid-color-state := 0 if grid-color-state > 1
       grid-color-state += Conf.live.flux-rate
 
