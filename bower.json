@@ -1,0 +1,23 @@
+{
+  "name": "presentation",
+  "version": "0.0.0",
+  "authors": [
+    "Angus Thomsen <aksthomsen@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "color-js": "~1.0.1",
+    "jquery": "~2.1.1",
+    "p5js": "~0.3.11",
+    "prelude-ls": "~1.1.1",
+    "underscore": "~1.7.0"
+  }
+}
