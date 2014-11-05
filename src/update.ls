@@ -64,38 +64,38 @@ window.Demo.Update = do ->
         Conf.live.grid-size += 3
 
     mid400s: (spec) -> 
-      if spec[400] > Conf.live.theshold.drop
-        unless trigged
-          Conf.live.colors.bg = Conf.colors.solid.white
-          Conf.live.colors.grid = Conf.colors.solid.black
-          Conf.live.theshold.drop = Conf.live.theshold.drop * 0.96
-          trigged := true
-        {bg, grid} = Conf.live.colors
-        Conf.live.colors.grid = Conf.colors.invert bg
-        Conf.live.colors.bg = Conf.colors.invert grid
-        Conf.live.grid-size += spec[400] / 40
+      if spec[400] > Conf.live.theshold.drop and not trigged
+        Conf.live.colors.bg = Conf.colors.solid.black
+        Conf.live.colors.grid = Conf.colors.solid.white
+        trigged := true
 
-      if spec[400] < 20 and trigged
-        switch Demo.Math.randInt(0,3)
-          case 0
-            Conf.live.colors.bg = Conf.colors.solid.white
-            Conf.live.colors.grid = Conf.colors.solid.black
-          case 1
-            Conf.live.colors.bg = Conf.colors.gradients.coolish
-            Conf.live.colors.grid = Conf.colors.solid.white
-          case 2
-            Conf.live.colors.bg = Conf.colors.gradients.warmish
-            Conf.live.colors.grid = Conf.colors.solid.black
-          case 3
-            Conf.live.theshold.drop = Conf.init.theshold.drop
-            switch Demo.Math.randInt 0, 1 
-              case 0
-                Conf.live.colors.bg = Conf.colors.gradients.coolish
-                Conf.live.colors.grid = Conf.colors.gradients.warmish
-              case 1
-                Conf.live.colors.bg = Conf.colors.gradients.warmish
-                Conf.live.colors.grid = Conf.colors.gradients.coolish
-            trigged := false
+      if trigged 
+        if spec[400] > (Conf.live.theshold.drop * 0.97)
+          Conf.live.grid-size += spec[400] / 40
+
+        if spec[400] > (Conf.live.theshold.drop * 0.95) 
+          {bg, grid} = Conf.live.colors
+          Conf.live.colors.grid = Conf.colors.invert bg
+          Conf.live.colors.bg = Conf.colors.invert grid
+
+        if spec[400] < 20
+          switch Demo.Math.randInt(0,2)
+            case 0
+              Conf.live.colors.bg = Conf.colors.gradients.coolish
+              Conf.live.colors.grid = Conf.colors.solid.white
+            case 1
+              Conf.live.colors.bg = Conf.colors.gradients.warmish
+              Conf.live.colors.grid = Conf.colors.solid.black
+            case 2
+              Conf.live.theshold.drop = Conf.init.theshold.drop
+              switch Demo.Math.randInt 0, 1 
+                case 0
+                  Conf.live.colors.bg = Conf.colors.gradients.coolish
+                  Conf.live.colors.grid = Conf.colors.gradients.warmish
+                case 1
+                  Conf.live.colors.bg = Conf.colors.gradients.warmish
+                  Conf.live.colors.grid = Conf.colors.gradients.coolish
+              trigged := false
 
       if spec[400] < 0
         Conf.live.flux-rate = Conf.init.flux-rate 
