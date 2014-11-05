@@ -16,7 +16,6 @@ window.Demo.Update = do ->
       Conf.live.grid-size = 0
 
       wait 500, ->
-        console.log "hello"
 
     grid-sizing: do ->
       ignore = false
@@ -72,15 +71,31 @@ window.Demo.Update = do ->
           Conf.live.theshold.drop = Conf.live.theshold.drop * 0.97
           trigged := true
         {bg, grid} = Conf.live.colors
-        Conf.live.colors.bg = grid
-        Conf.live.colors.grid = bg
+        Conf.live.colors.grid = Conf.colors.invert bg
+        Conf.live.colors.bg = Conf.colors.invert grid
         Conf.live.grid-size += spec[400] / 40
 
-      if spec[400] == 0 and trigged
-        Conf.live.theshold.drop = Conf.init.theshold.drop
-        Conf.live.colors.bg = Conf.colors.gradient.coolish
-        Conf.live.colors.grid = Conf.colors.graidents.warmish
-        trigged := false
+      if spec[400] < 20 and trigged
+        switch Demo.Math.randInt(0,3)
+          case 0
+            Conf.live.colors.bg = Conf.colors.gradients.warmish
+            Conf.live.colors.grid = Conf.colors.solid.white
+          case 1
+            Conf.live.colors.bg = Conf.colors.gradients.coolish
+            Conf.live.colors.grid = Conf.colors.solid.white
+          case 2
+            Conf.live.colors.bg = Conf.colors.gradients.warmish
+            Conf.live.colors.grid = Conf.colors.solid.black
+          case 3
+            Conf.live.theshold.drop = Conf.init.theshold.drop
+            switch Demo.Math.randInt 0, 1 
+              case 0
+                Conf.live.colors.bg = Conf.colors.gradients.coolish
+                Conf.live.colors.grid = Conf.colors.gradients.warmish
+              case 1
+                Conf.live.colors.bg = Conf.colors.gradients.warmish
+                Conf.live.colors.grid = Conf.colors.gradients.coolish
+            trigged := false
 
     update: ->
       spec = Demo.fft.analyze!

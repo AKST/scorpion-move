@@ -11,7 +11,7 @@ window.Demo.Conf = do ->
     (cxt) !->
       cxt.fillStyle = color
 
-  coolish = gradient-factory( 
+  warmish = gradient-factory( 
     Demo.Math.colorCurve([
       [0,   [247, 82, 170]],
       [0.3, [224, 72,  74]],
@@ -26,7 +26,7 @@ window.Demo.Conf = do ->
     ])
   )
 
-  warmish = gradient-factory(
+  coolish = gradient-factory(
     Demo.Math.colorCurve([
       [0,   [82, 247, 159]],
       [0.3, [72, 224, 224]],
@@ -41,8 +41,25 @@ window.Demo.Conf = do ->
     ])
   )
 
+  invert = (color) ->
+    if color == @solid.black
+      @solid.white
+    else if color == @solid.white
+      @solid.black
+    else if color == @gradients.coolish
+      @gradients.warmish
+    else if color == @gradients.warmish
+      @gradients.coolish
+    else
+      throw new Error "wrong color"
+
   return
-    song: './tune/zedd.mp3'
+    song: do
+      song-name = Demo.Url.name 'song'
+      if song-name
+        "./tune/#{song-name}.mp3"
+      else
+        './tune/zedd.mp3'
     width: window.inner-width 
     height: window.inner-height
     colors:
@@ -52,6 +69,7 @@ window.Demo.Conf = do ->
       solid:
         black: solid-color-factory \#000
         white: solid-color-factory \#fff
+      invert: invert
     init:
       theshold:
         drop: 190 # / 1.1
@@ -66,6 +84,6 @@ window.Demo.Conf = do ->
       grid-sink: 0.8
       flux-rate: 0.0025
       colors:
-        grid: coolish
-        bg: warmish
+        grid: warmish
+        bg: coolish
 

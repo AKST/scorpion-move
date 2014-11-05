@@ -1,11 +1,16 @@
 window.Demo = Demo = {}
 
 window.preload = ->
+  if 1 ~= Demo.Url.name "pause"
+    return
   Demo.tune = load-sound Demo.Conf.song
   Demo.fft = new p5.FFT!
 
 
 window.setup = ->
+  if 1 ~= Demo.Url.name "pause"
+    return
+
   Conf = Demo.Conf
   Demo.tune.play!
   Demo.Update.initTimed!
@@ -29,6 +34,9 @@ window.setup = ->
 
 
 window.draw = ->
+  if 1 ~= Demo.Url.name "pause"
+    return
+
   Demo.Update.update!
   Demo.Graphics.background-fill Demo.cxt
   Demo.Graphics.square-grid-fill Demo.cxt
