@@ -3,7 +3,7 @@
 window.Demo.Update = do ->
   Conf = Demo.Conf
 
-  wait = (n, f) -> 
+  wait = (n, f) !-> 
     setTimeout f, n 
 
   # visual state
@@ -12,7 +12,7 @@ window.Demo.Update = do ->
   fuzzing = false
 
   return
-    initTimed: ->
+    initTimed: !->
       Conf.live.grid-size = 0
 
       wait 500, ->
@@ -24,20 +24,20 @@ window.Demo.Update = do ->
         if spec[5] > 180 and not shown
           Conf.live.grid-size = 2
           ignore := true
-          wait 10, ->
-            ignore := false
-            shown := true
-            wait (if spec[5] < 180 then 200 else 10), ->
-              shown := false
+          _ <- wait 10
+          ignore := false
+          shown := true
+          _ <- wait (if spec[5] < 180 then 200 else 10)
+          shown := false
         else if not ignore
           down = ->
-            wait 10, ->
-              if Conf.live.grid-size > 2
-                Conf.live.grid-size -= 1
-                down()
-              else
-                Conf.live.grid-size = 0
-          down()
+            _ <- wait 10
+            if Conf.live.grid-size > 2
+              Conf.live.grid-size -= 1
+              down!
+            else
+              Conf.live.grid-size = 0
+          down!
 
     low5s: (spec) ->
       ugh = spec[5]
@@ -68,7 +68,7 @@ window.Demo.Update = do ->
         unless trigged
           Conf.live.colors.bg = Conf.colors.solid.white
           Conf.live.colors.grid = Conf.colors.solid.black
-          Conf.live.theshold.drop = Conf.live.theshold.drop * 0.97
+          Conf.live.theshold.drop = Conf.live.theshold.drop * 0.96
           trigged := true
         {bg, grid} = Conf.live.colors
         Conf.live.colors.grid = Conf.colors.invert bg
@@ -78,8 +78,8 @@ window.Demo.Update = do ->
       if spec[400] < 20 and trigged
         switch Demo.Math.randInt(0,3)
           case 0
-            Conf.live.colors.bg = Conf.colors.gradients.warmish
-            Conf.live.colors.grid = Conf.colors.solid.white
+            Conf.live.colors.bg = Conf.colors.solid.white
+            Conf.live.colors.grid = Conf.colors.solid.black
           case 1
             Conf.live.colors.bg = Conf.colors.gradients.coolish
             Conf.live.colors.grid = Conf.colors.solid.white
@@ -96,6 +96,9 @@ window.Demo.Update = do ->
                 Conf.live.colors.bg = Conf.colors.gradients.warmish
                 Conf.live.colors.grid = Conf.colors.gradients.coolish
             trigged := false
+
+      if spec[400] < 0
+        Conf.live.flux-rate = Conf.init.flux-rate 
 
     update: ->
       spec = Demo.fft.analyze!
