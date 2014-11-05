@@ -6,10 +6,11 @@ window.Demo.Update = do ->
   wait = (n, f) !-> 
     setTimeout f, n 
 
-  # visual state
+  ### enables drop physics ###
   trigged = false
+
+  ### enables the bueller effect ###
   buelling = false
-  fuzzing = false
 
   return
     initTimed: !->
@@ -97,7 +98,7 @@ window.Demo.Update = do ->
                   Conf.live.colors.grid = Conf.colors.gradients.coolish
               trigged := false
 
-      if spec[400] < 0
+      if spec[400] == 0
         Conf.live.flux-rate = Conf.init.flux-rate 
 
     update: ->
