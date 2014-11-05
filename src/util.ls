@@ -9,11 +9,11 @@ window.Demo.Math =
     return (x) ->
       (m * (x - xa)) + ya
 
-  multiLinearPlot: (lines) ->
-    lastIndex = lines.length-2
+  multi-linear-plot: (lines) ->
+    last-index = lines.length-2
 
     min = lines[0][0]
-    max = lines[lastIndex][0]
+    max = lines[last-index][0]
 
     equations = do =>
       for i in [0 to lines.length-2]
@@ -30,31 +30,31 @@ window.Demo.Math =
       else if x < min
         return equations[0].eq x
       else if x > max
-        return equations[lastIndex].eq x
+        return equations[last-index].eq x
 
-  colorCurve: (colors) ->
-    rBuff = []
-    gBuff = []
-    bBuff = []
+  color-curve: (colors) ->
+    r-buff = []
+    g-buff = []
+    b-buff = []
 
     for color in colors
-      rBuff.push [color[0], color[1][0]]
-      gBuff.push [color[0], color[1][1]]
-      bBuff.push [color[0], color[1][2]]
+      r-buff.push [color[0], color[1][0]]
+      g-buff.push [color[0], color[1][1]]
+      b-buff.push [color[0], color[1][2]]
 
-    r = @multiLinearPlot rBuff
-    g = @multiLinearPlot gBuff
-    b = @multiLinearPlot bBuff
+    r = @multi-linear-plot r-buff
+    g = @multi-linear-plot g-buff
+    b = @multi-linear-plot b-buff
 
     return (i) ->
       new net.brehaut.Color [r(i), g(i), b(i)]
 
   fade: (start, end) ->
-    color = @colorCurve [[0, start], [1, end]]
+    color = @color-curve [[0, start], [1, end]]
     return (i) ->
       color(i).toCSS()
 
-  randRange: (min, max) ->
+  rand-range: (min, max) ->
     all = Math.random() * 1000000
 
     if min >= 0 && max >= 0
@@ -64,7 +64,7 @@ window.Demo.Math =
     else if min <= 0
       return (all % (min - max)) + min
 
-  randInt: (min, max) ->
+  rand-int: (min, max) ->
     Math.floor(Math.random() * (max - min)) + min
 
 window.Demo.Url =
