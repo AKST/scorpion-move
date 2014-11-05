@@ -1,10 +1,11 @@
 window.Demo.Conf = do ->
 
-  gradient-factory = (topLeft, bottomRight) ->
+  gradient-factory = (top-left, bottom-right) ->
     (cxt, offset) !->
+      Conf = Demo.Conf
       grd = cxt.createLinearGradient Conf.width, Conf.height, 0, 0
-      grd.addColorStop 0, bottomRight offset
-      grd.addColorStop 1, topLeft offset 
+      grd.addColorStop 0, bottom-right offset
+      grd.addColorStop 1, top-left offset 
       cxt.fillStyle = grd
 
   solid-color-factory = (color) ->
@@ -13,31 +14,31 @@ window.Demo.Conf = do ->
 
   warmish = gradient-factory( 
     Demo.Math.colorCurve([
-      [0,   [247, 82, 170]],
-      [0.3, [224, 72,  74]],
-      [0.6, [255, 221,  0]],
-      [1,   [247, 82, 170]],
+      [0,   [247, 82, 170]]
+      [0.3, [224, 72,  74]]
+      [0.6, [255, 221,  0]]
+      [1,   [247, 82, 170]]
     ]),
     Demo.Math.colorCurve([
-      [0,   [224,  72,  74]],
-      [0.3, [255, 191,   0]],
-      [0.6, [245,  0,  139]],
-      [1,   [224,  72,  74]],
+      [0,   [224,  72,  74]]
+      [0.3, [255, 191,   0]]
+      [0.6, [245,  0,  139]]
+      [1,   [224,  72,  74]]
     ])
   )
 
   coolish = gradient-factory(
     Demo.Math.colorCurve([
-      [0,   [82, 247, 159]],
-      [0.3, [72, 224, 224]],
-      [0.6, [0,   34, 225]],
-      [1,   [82, 247, 159]],
+      [0,   [82, 247, 159]]
+      [0.3, [72, 224, 224]]
+      [0.6, [0,   34, 225]]
+      [1,   [82, 247, 159]]
     ]),
     Demo.Math.colorCurve([
-      [0,   [72,  224, 224]],
-      [0.3, [0,    64, 255]],
-      [0.6, [0,   245, 106]],
-      [1,   [72,  224, 224]],
+      [0,   [72,  224, 224]]
+      [0.3, [0,    64, 255]]
+      [0.6, [0,   245, 106]]
+      [1,   [72,  224, 224]]
     ])
   )
 
@@ -55,11 +56,11 @@ window.Demo.Conf = do ->
 
   return
     song: do
-      song-name = Demo.Url.name 'song'
+      song-name = Demo.Url.name \song
       if song-name
         "./tune/#{song-name}.mp3"
       else
-        './tune/zedd.mp3'
+        \./tune/zedd.mp3
     width: window.inner-width 
     height: window.inner-height
     colors:
@@ -72,14 +73,14 @@ window.Demo.Conf = do ->
       invert: invert
     init:
       theshold:
-        drop: 190 # / 1.1
+        drop: 190
         ugh: 250 
       grid-size: 2
       grid-sink: 0.8
       flux-rate: 0.0025
     live:
       theshold:
-        drop: 190 # / 1.1
+        drop: 190
       grid-size: 2
       grid-sink: 0.8
       flux-rate: 0.0025

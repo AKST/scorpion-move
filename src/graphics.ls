@@ -1,7 +1,7 @@
-Demo = window.Demo
-Conf = window.Demo.Conf
+window.Demo.Graphics = do ->
 
-Demo.Graphics = do ->
+  Demo = window.Demo
+  Conf = window.Demo.Conf
 
   background-fill = do
     bg-color-state = 0
@@ -12,6 +12,7 @@ Demo.Graphics = do ->
       cxt.fillRect 0, 0, Conf.width, Conf.height
 
   square-grid-fill = do
+    grid-color-state = 0
     (cxt) !->
       {width, height} = Conf
 
@@ -23,9 +24,6 @@ Demo.Graphics = do ->
         v-offset = width/20
         h-offset = (height - width)/2 + width/20
         arean-size = width - v-offset*2
-
-      grid-color-state = 0
-
 
       grid-color-state := 0 if grid-color-state > 1
       grid-color-state += Conf.live.flux-rate
@@ -46,7 +44,6 @@ Demo.Graphics = do ->
             draw-size - b-offset,
             draw-size - b-offset,
           )
-          
 
   return
     background-fill: background-fill

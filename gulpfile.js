@@ -50,7 +50,7 @@ gulp.task('scripts', ['vendor'], function() {
   // Minify and copy all JavaScript (except vendor scripts)
   // with sourcemaps all the way down
   return gulp.src(paths.scripts.files)
-    .pipe(livescript({ bare: true }))
+    .pipe(livescript())
     .pipe(uglify())
     .pipe(concat(paths.scripts.combinedName))
     .pipe(gulp.dest(paths.scripts.outdir));
