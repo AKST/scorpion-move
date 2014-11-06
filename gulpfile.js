@@ -51,7 +51,7 @@ gulp.task('scripts', ['vendor'], function() {
   // with sourcemaps all the way down
   return gulp.src(paths.scripts.files)
     .pipe(livescript())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(concat(paths.scripts.combinedName))
     .pipe(gulp.dest(paths.scripts.outdir));
 });

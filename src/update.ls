@@ -14,6 +14,13 @@ window.Demo.Update = do ->
 
   monochrome = false
 
+
+  snare-plot = Demo.Math.multi-linear-plot [
+    [Conf.live.theshold.drop * 0.75, 1]
+    [Conf.live.theshold.drop * 0.85, 3]
+    [Conf.live.theshold.drop * 0.90, 5]
+  ]
+
   return
     initTimed: !->
       Conf.live.grid-size = 0
@@ -79,14 +86,9 @@ window.Demo.Update = do ->
 
       if trigged 
         if @spec[400] > (Conf.live.theshold.drop * 0.75) 
-          Conf.live.grid-size += 1
-        if @spec[400] > (Conf.live.theshold.drop * 0.80) 
-          Conf.live.grid-size += 1
-        if @spec[400] > (Conf.live.theshold.drop * 0.85) 
-          Conf.live.grid-size += 1
+          Conf.live.grid-size += Math.round snare-plot @spec[400]
 
         if @spec[400] > (Conf.live.theshold.drop * 0.9) 
-          Conf.live.grid-size += 2
           {bg, grid} = Conf.live.colors
           Conf.live.colors.grid = Conf.colors.invert bg
           Conf.live.colors.bg = Conf.colors.invert grid
