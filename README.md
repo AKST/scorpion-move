@@ -1,7 +1,7 @@
 Scorpion Move
 ======
 
-[![preview](http://i.imgur.com/dPPdA3O.gif)]()
+[![preview](http://i.imgur.com/dPPdA3O.gif)](http://vimeo.com/user6480675/scorpion-move)
 
 For a university related event I was asked to put together something
 you can do with canvas. I had trouble putting an interesting presentation
