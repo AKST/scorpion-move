@@ -1,1 +1,1 @@
-mkdir -p lib dist tune
+mkdir -p dist tune

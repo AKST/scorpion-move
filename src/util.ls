@@ -68,15 +68,15 @@ window.Demo.Math =
     Math.floor(Math.random() * (max - min)) + min
 
 window.Demo.Url =
-  
-  name: (name) ->
+
+  name: (name, otherwise = "") ->
     sane = name
-      .replace /[\[]/, "\\[" 
-      .replace /[\]]/, "\\]" 
-    regex = new RegExp "[\\?&]" + name + "=([^&#]*)" 
+      .replace /[\[]/, "\\["
+      .replace /[\]]/, "\\]"
+    regex = new RegExp "[\\?&]" + name + "=([^&#]*)"
     extract = regex.exec location.hash
     if extract?
       decodeURIComponent extract[1].replace /\+/g, " "
     else
-      ""
+      otherwise
 

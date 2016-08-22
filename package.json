@@ -16,5 +16,8 @@
     "gulp-sourcemaps": "^1.2.7",
     "gulp-uglify": "^1.0.1",
     "gulp-wrap": "^0.5.0"
+  },
+  "devDependencies": {
+    "livescript": "^1.5.0"
   }
 }

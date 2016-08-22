@@ -7,11 +7,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var livescript = require('gulp-livescript');
 
 
-var vendorPath = function(relative) {
-  return './lib/' + relative;
-}
-
-
 var paths = {
   scripts: {
     files: [
@@ -22,15 +17,7 @@ var paths = {
       './src/graphics.ls',
     ],
     vendor: {
-      files: [
-        vendorPath('prelude-ls/browser/prelude-browser-min.js'),
-        vendorPath('jquery/dist/jquery.min.js'),
-        vendorPath('color-js/color.js'),
-        vendorPath('underscore/underscore-min.js'),
-        vendorPath('p5js/lib/p5.js'),
-        vendorPath('p5js/lib/addons/p5.dom.js'),
-        vendorPath('p5js/lib/addons/p5.sound.js'),
-      ],
+      files: [],
       combinedName: 'combined-vendor.min.js',
     },
     combinedName: 'combined-scripts.min.js',

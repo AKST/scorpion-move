@@ -3,8 +3,8 @@
 window.Demo.Update = do ->
   Conf = Demo.Conf
 
-  wait = (n, f) !-> 
-    setTimeout f, n 
+  wait = (n, f) !->
+    setTimeout f, n
 
   ### enables drop physics ###
   trigged = false
@@ -73,7 +73,7 @@ window.Demo.Update = do ->
       if @spec[900] > 80
         Conf.live.flux-rate += 0.1
 
-    mid400s: -> 
+    mid400s: ->
       if @spec[400] > Conf.live.theshold.drop and not trigged
         switch Demo.Math.randInt(0,1)
           case 0
@@ -84,11 +84,11 @@ window.Demo.Update = do ->
             Conf.live.colors.grid = Conf.colors.solid.black
         trigged := true
 
-      if trigged 
-        if @spec[400] > (Conf.live.theshold.drop * 0.75) 
+      if trigged
+        if @spec[400] > (Conf.live.theshold.drop * 0.75)
           Conf.live.grid-size += Math.round snare-plot @spec[400]
 
-        if @spec[400] > (Conf.live.theshold.drop * 0.9) 
+        if @spec[400] > (Conf.live.theshold.drop * 0.9)
           {bg, grid} = Conf.live.colors
           Conf.live.colors.grid = Conf.colors.invert bg
           Conf.live.colors.bg = Conf.colors.invert grid
@@ -108,12 +108,12 @@ window.Demo.Update = do ->
               @untrigger!
 
       if @spec[400] < 10
-        Conf.live.flux-rate = Conf.init.flux-rate 
+        Conf.live.flux-rate = Conf.init.flux-rate
         @untrigger!
 
-    untrigger: -> 
+    untrigger: ->
       trigged := false
-      switch Demo.Math.randInt 0, 1 
+      switch Demo.Math.randInt 0, 1
         case 0
           Conf.live.colors.bg = Conf.colors.gradients.coolish
           Conf.live.colors.grid = Conf.colors.gradients.warmish
@@ -129,8 +129,8 @@ window.Demo.Update = do ->
       @high800s!
       @grid-sizing!
       @mid400s!
-      if Conf.live.grid-size == 1 
+      if Conf.live.grid-size == 1
         Conf.live.grid-size = 0
 
 
-      
+

@@ -5,14 +5,14 @@ window.Demo.Conf = do ->
       Conf = Demo.Conf
       grd = cxt.createLinearGradient Conf.width, Conf.height, 0, 0
       grd.addColorStop 0, bottom-right offset
-      grd.addColorStop 1, top-left offset 
+      grd.addColorStop 1, top-left offset
       cxt.fillStyle = grd
 
   solid-color-factory = (color) ->
     (cxt) !->
       cxt.fillStyle = color
 
-  warmish = gradient-factory( 
+  warmish = gradient-factory(
     Demo.Math.colorCurve([
       [0,   [247, 82, 170]]
       [0.3, [224, 72,  74]]
@@ -56,12 +56,10 @@ window.Demo.Conf = do ->
 
   return
     song: do
-      song-name = Demo.Url.name \song
-      if song-name
-        "./tune/#{song-name}.mp3"
-      else
-        \./tune/zedd.mp3
-    width: window.inner-width 
+      song-name = Demo.Url.name \song, "zedd"
+      song-fmt  = Demo.Url.name \format, "mp3"
+      "./tune/#{song-name}.#{song-fmt}"
+    width: window.inner-width
     height: window.inner-height
     colors:
       gradients:
@@ -74,7 +72,7 @@ window.Demo.Conf = do ->
     init:
       theshold:
         drop: 190
-        ugh: 250 
+        ugh: 250
       grid-size: 2
       grid-sink: 0.8
       flux-rate: 0.0025
